@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCategoryDto } from './dto/create-category.dto';
+import { UpdateCategoryDto } from './dto/update-category.dto';
 import { Categories } from '../entities';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -26,5 +27,21 @@ export class CategoriesService {
 
   async findOne(id: number) {
     return await this.categoriesRepository.findOne({ where: { id } });
+  }
+
+  async update(
+    id: number,
+    updateCategoryDto: UpdateCategoryDto,
+    username: string,
+  ) {
+    return await this.categoriesRepository.update(id, {
+      ...updateCategoryDto,
+      updatedAt: new Date(),
+      updatedBy: username,
+    });
+  }
+
+  async delete(id: number) {
+    return await this.categoriesRepository.delete(id);
   }
 }
