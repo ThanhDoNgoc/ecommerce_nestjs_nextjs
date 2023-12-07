@@ -6,18 +6,22 @@ import {
   Param,
   Put,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
+import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
+
 import { CategoriesService } from './categories.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
-import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { Categories } from '../entities';
+import { AuthorizationGuard } from '../authorization/authorization.guard';
 
 @Controller('categories')
 @ApiTags('categories')
 export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}
 
+  @UseGuards(AuthorizationGuard)
   @Post()
   @ApiOkResponse({ type: Categories })
   async create(@Body() createCategoryDto: CreateCategoryDto) {
