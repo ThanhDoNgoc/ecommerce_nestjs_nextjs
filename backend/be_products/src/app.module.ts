@@ -4,10 +4,18 @@ import { AppService } from './app.service';
 import { CategoriesModule } from './categories/categories.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductsModule } from './products/products.module';
+import { ConfigModule } from '@nestjs/config';
 import ormconfig from './orm.config';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(ormconfig), CategoriesModule, ProductsModule],
+  imports: [
+    TypeOrmModule.forRoot(ormconfig),
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    CategoriesModule,
+    ProductsModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
