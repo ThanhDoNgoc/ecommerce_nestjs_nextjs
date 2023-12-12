@@ -16,7 +16,7 @@ RUN npm ci && npm run build
 FROM node:20-alpine 
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
-COPY --from=build /app/dist ./src
+COPY --from=build /app/dist/src ./src
 
 EXPOSE 3001
 
