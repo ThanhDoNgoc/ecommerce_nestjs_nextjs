@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_container
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "5432:5432"
+    networks:
+      - app_network
+
+  be_products:
+    build:
+      context: ./backend/be_products
+      dockerfile: Dockerfile
+    container_name: be_products_container
+    env_file: .env
+    ports:
+      - "3010:3010"
+    depends_on:
+      - postgres
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
