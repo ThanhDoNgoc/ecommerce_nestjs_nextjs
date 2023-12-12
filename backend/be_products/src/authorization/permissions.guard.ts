@@ -51,3 +51,4 @@ function createPermissionsGuard(
 export const PermissionsGuard = (
   routePermissions: string[],
 ): Type<CanActivate> => createPermissionsGuard(routePermissions);
+

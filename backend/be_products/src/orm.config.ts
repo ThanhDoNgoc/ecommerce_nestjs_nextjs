@@ -17,7 +17,6 @@ const ormconfig: TypeOrmModuleOptions = {
 
 export default ormconfig;
 
-
 //This connectionSource is use for migration to database (not require in source code)
 export const connectionSource = new DataSource({
   ...ormconfig,

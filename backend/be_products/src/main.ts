@@ -7,7 +7,6 @@ import helmet from 'helmet';
 import * as nocache from 'nocache';
 import { HttpExceptionFilter } from './http-exeption.filter';
 
-
 dotenv.config({ path: '../*.env' });
 
 function checkEnvironment(configService: ConfigService) {
@@ -36,7 +35,7 @@ async function bootstrap() {
   app.useGlobalFilters(new HttpExceptionFilter());
 
   app.use(nocache());
-  
+
   const config = new DocumentBuilder()
     .setTitle('Products')
     .setDescription('Products Apis')

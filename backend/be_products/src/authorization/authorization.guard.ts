@@ -18,7 +18,7 @@ export class AuthorizationGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest<Request>();
     const response = context.switchToHttp().getResponse<Response>();
-    
+
     const validateAccessToken = promisify(auth());
 
     try {

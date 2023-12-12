@@ -1,21 +1,21 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateProductDto {
-  @ApiProperty({type: String})
+  @ApiProperty({ type: String })
   readonly name: string;
 
-  @ApiProperty({type: Number})
+  @ApiProperty({ type: Number })
   readonly price: number;
 
-  @ApiProperty({type: String})
+  @ApiProperty({ type: String })
   readonly description: string;
 
-  @ApiProperty({type: Number})
+  @ApiProperty({ type: Number })
   readonly inStock: number;
 
-  @ApiProperty({type: Boolean})
+  @ApiProperty({ type: Boolean })
   readonly isPublic: boolean;
 
-  @ApiProperty({type: [String]})
+  @ApiProperty({ type: [String] })
   readonly categoryIds: string[];
 }
