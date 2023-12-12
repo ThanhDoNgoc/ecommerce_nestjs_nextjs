@@ -20,7 +20,7 @@ services:
     container_name: be_products_container
     env_file: .env
     ports:
-      - "3010:3010"
+      - "${PORT}:${PORT}"
     depends_on:
       - postgres
     networks:
