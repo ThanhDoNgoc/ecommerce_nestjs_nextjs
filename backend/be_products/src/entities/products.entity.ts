@@ -5,28 +5,27 @@ import { ApiProperty } from '@nestjs/swagger';
 
 @Entity()
 export class Products extends BaseEntity {
-
-  @ApiProperty({type: String})
+  @ApiProperty({ type: String })
   @Column()
   name: string;
 
-  @ApiProperty({type: Number})
+  @ApiProperty({ type: Number })
   @Column()
   price: number;
 
-  @ApiProperty({type: String})
+  @ApiProperty({ type: String })
   @Column()
   description: string;
 
-  @ApiProperty({type: Number})
+  @ApiProperty({ type: Number })
   @Column()
   inStock: number;
 
-  @ApiProperty({type: Boolean})
+  @ApiProperty({ type: Boolean })
   @Column({ default: false })
   isPublic: boolean;
 
-  @ApiProperty({type: [Categories]})
+  @ApiProperty({ type: [Categories] })
   @ManyToMany(() => Categories)
   @JoinTable()
   categories: Categories[];

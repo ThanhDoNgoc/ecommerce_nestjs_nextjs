@@ -4,7 +4,7 @@ import { ApiProperty } from '@nestjs/swagger';
 
 @Entity()
 export class Categories extends BaseEntity {
-  @ApiProperty({type: String})
+  @ApiProperty({ type: String })
   @Column()
   name: string;
 }

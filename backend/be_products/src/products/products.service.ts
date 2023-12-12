@@ -1,6 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { Categories, Products } from '../entities';
-import { FindManyOptions, FindOptionsWhere, In, Like, Repository } from 'typeorm';
+import {
+  FindManyOptions,
+  FindOptionsWhere,
+  In,
+  Like,
+  Repository,
+} from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-products.dto';
@@ -33,7 +39,7 @@ export class ProductsService {
     return await this.productsRepository.findOneBy({ id: id });
   }
 
-  async find(findProductDto: FindProductDto){
+  async find(findProductDto: FindProductDto) {
     const queryOptions: FindManyOptions<Products> = {
       order: { name: 'ASC' },
       skip: findProductDto.limit * findProductDto.page || 0,
@@ -63,9 +69,8 @@ export class ProductsService {
 
     queryOptions.where = queryWhereOptions;
 
-    const [products, total] = await this.productsRepository.findAndCount(
-      queryOptions,
-    );
+    const [products, total] =
+      await this.productsRepository.findAndCount(queryOptions);
 
     return {
       data: products,
@@ -73,11 +78,15 @@ export class ProductsService {
     };
   }
 
-  async update(id: number, updateProductDto: UpdateProductDto, username: string){
+  async update(
+    id: number,
+    updateProductDto: UpdateProductDto,
+    username: string,
+  ) {
     return await this.productsRepository.update(id, {
       ...updateProductDto,
       updatedAt: new Date(),
-      updatedBy: username
-    })
+      updatedBy: username,
+    });
   }
 }
